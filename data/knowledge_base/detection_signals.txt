@@ -1,0 +1,19 @@
+Phishing and malicious communication can be identified using multiple signals.
+
+Text-based signals:
+- High urgency words
+- Credential request phrases
+- Suspicious links or domains
+- Grammar inconsistencies
+
+Technical signals:
+- URL count and domain mismatch
+- Email header anomalies
+- Attachment behavior
+
+Behavioral signals:
+- Unexpected requests
+- Financial urgency
+- Unusual communication patterns
+
+Combining multiple signals improves detection accuracy.

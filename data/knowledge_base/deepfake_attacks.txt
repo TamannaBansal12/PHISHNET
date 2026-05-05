@@ -1,0 +1,19 @@
+Deepfake attacks use AI-generated audio, video, or images to impersonate individuals.
+
+Common deepfake threats:
+- Fake CEO voice calls requesting money transfer
+- Video impersonation of executives
+- AI-generated identity fraud
+- Synthetic media used for phishing
+
+Indicators of deepfake:
+- Unnatural facial movements
+- Lip-sync mismatches
+- Inconsistent lighting or shadows
+- Robotic or unnatural voice tone
+- Audio artifacts or distortion
+
+Prevention:
+- Verify identity using multiple channels
+- Use biometric verification systems
+- Train employees to recognize deepfakes

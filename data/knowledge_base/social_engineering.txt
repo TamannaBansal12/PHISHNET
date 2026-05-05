@@ -1,0 +1,15 @@
+Social engineering exploits human psychology to bypass security.
+
+Common tactics:
+- Urgency ("respond immediately")
+- Authority ("this is from your manager")
+- Fear ("your account will be blocked")
+- Trust ("internal email impersonation")
+- Curiosity ("you have received a bonus")
+
+Attackers often combine social engineering with phishing emails, deepfakes, and fake websites.
+
+Defense:
+- Awareness training
+- Zero-trust mindset
+- Verification through official channels

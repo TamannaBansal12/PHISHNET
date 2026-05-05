@@ -1,0 +1,18 @@
+Effective phishing prevention requires both technical and human measures.
+
+Technical controls:
+- Use SPF, DKIM, and DMARC for email authentication
+- Enable multi-factor authentication (MFA)
+- Implement URL filtering and sandboxing
+- Use email security gateways
+
+User practices:
+- Verify sender identity before clicking links
+- Avoid entering credentials via email links
+- Check domain spelling carefully
+- Report suspicious emails immediately
+
+Organizational practices:
+- Conduct phishing awareness training
+- Monitor email traffic for anomalies
+- Maintain updated threat intelligence feeds

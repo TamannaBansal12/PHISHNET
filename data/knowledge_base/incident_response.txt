@@ -1,0 +1,15 @@
+When phishing or malicious communication is detected, immediate action is required.
+
+Steps:
+1. Do not interact with the message
+2. Report to the security team
+3. Isolate affected systems if needed
+4. Analyze threat indicators
+5. Block malicious domains or senders
+6. Notify impacted users
+
+Post-incident:
+- Update detection rules
+- Add patterns to knowledge base
+- Conduct awareness training
+- Improve monitoring systems

@@ -1,0 +1,11 @@
+Phishing emails commonly use urgency, fear, or authority to manipulate users.
+
+Common patterns include:
+- Fake login pages mimicking banks or services
+- Spoofed sender domains (e.g., support@paypa1.com)
+- Requests for passwords, OTPs, or confidential data
+- Malicious links disguised as legitimate URLs
+- Attachments containing malware or macros
+- Messages claiming account suspension or security alerts
+
+Attackers often use social engineering tactics such as urgency ("act now"), fear ("account compromised"), or reward ("you won a prize").
