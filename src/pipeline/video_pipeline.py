@@ -1,4 +1,5 @@
 import os
+
 from src.detection.video.video_detector import analyze_video_file
 from src.scoring.risk_scorer import risk_level
 from src.agents.model_router import route_model
@@ -23,6 +24,15 @@ def run_video_pipeline(video_path):
         advanced_signal_score=final_score
     )
 
+    selected_model = (
+        model_routing.get("selected_model")
+        or model_routing.get("selected_models", {}).get("video")
+        or model_routing.get("selected_models", {}).get("reasoning")
+        or "N/A"
+    )
+
+    model_routing.setdefault("selected_model", selected_model)
+
     reflection = f"""
 Agentic Reflection:
 The uploaded video was analyzed through frame-level feature extraction. The baseline model
@@ -35,13 +45,24 @@ Risk Score: {final_score}/100
 Risk Level: {final_level}
 
 Green AI Routing:
-Selected Model Path: {model_routing["selected_model"]}
-Reason: {model_routing["routing_reason"]}
-Carbon Impact: {model_routing["carbon_impact"]}
+Selected Model Path: {selected_model}
+Reason: {model_routing.get("routing_reason", "N/A")}
+Carbon Impact: {model_routing.get("carbon_impact", "N/A")}
+
+Advanced Runtime:
+- Lightweight-first Green AI routing enabled
+- Dynamic escalation path available
+- Critic validation loop enabled
+- VLM reasoning path supported for high-risk cases
 
 Note:
-This is currently a baseline video detector. The next upgrade should include balanced original/manipulated training,
-OCR, watermark/manipulation checks, and VLM-based visual reasoning.
+This is currently a baseline video detector. The next upgrade should include:
+- Balanced original/manipulated training
+- OCR integration
+- Watermark/provenance checks
+- Temporal inconsistency analysis
+- VLM-based visual reasoning
+- Lip-sync mismatch analysis
 """
 
     prevention = f"""
@@ -54,12 +75,17 @@ Prevention Recommendation:
 
 RAG/Knowledge Context:
 Deepfake video attacks often involve impersonation, facial manipulation, lip-sync mismatch,
-lighting inconsistencies, or synthetic visual artifacts.
+lighting inconsistencies, synthetic frame artifacts, and AI-generated visual reconstruction.
 """
 
     evidence = detection.get("evidence", [])
-    evidence.append(f"Green AI model selected: {model_routing['selected_model']}")
-    evidence.append(f"Estimated carbon impact: {model_routing['carbon_impact']}")
+
+    evidence.append(f"Video prediction: {prediction}")
+    evidence.append(f"Video confidence: {confidence}")
+    evidence.append(f"Green AI model selected: {selected_model}")
+    evidence.append(
+        f"Estimated carbon impact: {model_routing.get('carbon_impact', 'N/A')}"
+    )
 
     return {
         "modality": "video",
@@ -70,4 +96,5 @@ lighting inconsistencies, or synthetic visual artifacts.
         "prevention": prevention,
         "model_routing": model_routing,
         "evidence": evidence,
+        "features": detection.get("features", {}),
     }

@@ -32,6 +32,15 @@ def run_audio_pipeline(audio_path):
         advanced_signal_score=final_score
     )
 
+    selected_model = (
+        model_routing.get("selected_model")
+        or model_routing.get("selected_models", {}).get("audio")
+        or model_routing.get("selected_models", {}).get("reasoning")
+        or "N/A"
+    )
+
+    model_routing.setdefault("selected_model", selected_model)
+
     reflection = f"""
 Agentic Reflection:
 The uploaded audio file was analyzed using MFCC, spectral centroid, spectral rolloff,
@@ -45,9 +54,9 @@ Risk Score: {final_score}/100
 Risk Level: {final_level}
 
 Green AI Routing:
-Selected Model Path: {model_routing["selected_model"]}
-Reason: {model_routing["routing_reason"]}
-Carbon Impact: {model_routing["carbon_impact"]}
+Selected Model Path: {selected_model}
+Reason: {model_routing.get("routing_reason", "N/A")}
+Carbon Impact: {model_routing.get("carbon_impact", "N/A")}
 """
 
     prevention = """
@@ -65,8 +74,8 @@ The safest prevention method is multi-channel verification and strict approval w
 
     evidence = detection.get("evidence", [])
     evidence.append(f"Audio signal score: {audio_score}/100")
-    evidence.append(f"Green AI model selected: {model_routing['selected_model']}")
-    evidence.append(f"Estimated carbon impact: {model_routing['carbon_impact']}")
+    evidence.append(f"Green AI model selected: {selected_model}")
+    evidence.append(f"Estimated carbon impact: {model_routing.get('carbon_impact', 'N/A')}")
 
     return {
         "modality": "audio",

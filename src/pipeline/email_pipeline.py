@@ -94,7 +94,15 @@ def run_email_pipeline(email_text):
     evidence.extend(attachment_result.get("attachment_issues", []))
     evidence.extend(heuristic_signals)
 
-    evidence.append(f"Model selected: {model_routing['selected_model']}")
+    selected_models = model_routing.get("selected_models", {})
+
+    selected_model_summary = (
+        selected_models.get("reasoning")
+        or model_routing.get("selected_model")
+        or "N/A"
+    )
+
+    evidence.append(f"Model selected: {selected_model_summary}")
     evidence.append(f"Carbon impact: {model_routing['carbon_impact']}")
 
     return {
