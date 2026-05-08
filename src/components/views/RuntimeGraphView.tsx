@@ -49,14 +49,14 @@ export function RuntimeGraphView() {
         </div>
 
         <div className="lg:col-span-4 space-y-6">
-           <Card className="bg-slate-900/40 border-slate-800">
+           <Card className="bg-slate-900/40 border-slate-800 flex flex-col">
               <CardHeader className="border-b border-slate-800/50">
                  <CardTitle className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
                     <Network className="h-4 w-4 text-purple-500" />
                     Threat Relationship Mapping
                  </CardTitle>
               </CardHeader>
-              <CardContent className="pt-8 h-[400px] flex items-center justify-center relative">
+              <CardContent className="pt-8 min-h-[400px] flex items-center justify-center relative flex-1">
                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-500/5 via-transparent to-transparent" />
                  <div className="relative flex flex-col items-center gap-8">
                     {/* Simplified Graph Visual */}

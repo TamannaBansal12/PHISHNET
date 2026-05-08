@@ -104,7 +104,7 @@ export function SOCOverviewHero({ result }: { result: ThreatAnalysisResponse }) 
       
       <CardContent className="p-8 relative z-10">
         <div className="flex flex-col lg:flex-row gap-12">
-          <div className="flex-1 space-y-8">
+          <div className="flex-1 min-w-0 space-y-8">
             <div>
               <div className="flex flex-wrap items-center gap-6 mb-8">
                 <Badge className={cn(
@@ -437,10 +437,10 @@ export function EvidenceAnalysisWorkspace({ categories, riskContribution }: { ca
         </CardTitle>
       </CardHeader>
       
-      <CardContent className="p-0">
-        <div className="grid grid-cols-1 lg:grid-cols-[220px_minmax(0,1fr)_260px] divide-y lg:divide-y-0 lg:divide-x divide-slate-800/50 items-start">
+      <CardContent className="p-0 overflow-x-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_minmax(360px,1fr)_360px] divide-y lg:divide-y-0 lg:divide-x divide-slate-800/50 items-start min-w-0">
           {/* 1. Left: Categories */}
-          <div className="p-5 space-y-2 bg-slate-900/10">
+          <div className="p-5 space-y-2 bg-slate-900/10 min-w-0">
             <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-4 px-2">Investigation Scope</span>
             {(Object.keys(categoryMeta) as Array<keyof CategorizedEvidence>).map((cat) => {
               const meta = categoryMeta[cat];
@@ -472,11 +472,11 @@ export function EvidenceAnalysisWorkspace({ categories, riskContribution }: { ca
           <div className="p-6 min-w-0 bg-slate-950/20">
             <ProcessingTimeline />
             
-            <div className="flex items-center justify-between mb-6 border-b border-slate-800/50 pb-4">
-              <h3 className="text-sm font-black text-slate-200 flex items-center gap-2 uppercase tracking-wider">
-                {categoryMeta[activeCategory]?.label || "Evidence Feed"}
-                <span className="text-slate-700 mx-1">/</span>
-                <span className="text-slate-500 text-[10px] font-mono tracking-tighter normal-case">Forensic Trace</span>
+            <div className="flex items-center justify-between mb-6 border-b border-slate-800/50 pb-4 min-w-0">
+              <h3 className="text-sm font-black text-slate-200 flex items-center gap-2 uppercase tracking-wider truncate min-w-0">
+                <span className="truncate">{categoryMeta[activeCategory]?.label || "Evidence Feed"}</span>
+                <span className="text-slate-700 mx-1 shrink-0">/</span>
+                <span className="text-slate-500 text-[10px] font-mono tracking-tighter normal-case truncate">Forensic Trace</span>
               </h3>
             </div>
             
@@ -514,7 +514,7 @@ export function EvidenceAnalysisWorkspace({ categories, riskContribution }: { ca
           </div>
           
           {/* 3. Right: Risk Metrics */}
-          <div className="p-6 space-y-8 bg-slate-900/20">
+          <div className="p-6 space-y-8 bg-slate-900/20 min-w-0">
             <div>
               <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-5">Risk Contribution</span>
               <RiskContributionBoard risk={riskContribution} hideTitle />
@@ -686,7 +686,7 @@ export function AnalystRightPanel({ result }: { result: ThreatAnalysisResponse }
   const modality = result.case_metadata?.modality?.toLowerCase() || 'email';
 
   return (
-    <div className="w-80 h-[calc(100vh-4rem)] sticky top-0 bg-slate-950/50 backdrop-blur-md border-l border-slate-900 p-6 space-y-8 flex flex-col shrink-0 overflow-y-auto z-40 soc-glow-border">
+    <div className="hidden 2xl:flex w-80 h-[calc(100vh-4rem)] sticky top-0 bg-slate-950/50 backdrop-blur-md border-l border-slate-900 p-6 space-y-8 flex-col shrink-0 overflow-y-auto z-40 soc-glow-border">
       <div className="space-y-6">
         <AnalystWorkflowCard modality={modality} />
         <LiveThreatFeed />
@@ -818,24 +818,20 @@ export function GreenModelEconomy({ routing }: { routing: ModelRouting }) {
     <div className="relative z-0 flex flex-col gap-5 rounded-2xl border border-slate-800 bg-slate-950/60 p-6 h-auto overflow-visible soc-card-lift soc-glow-border">
 
       {/* Header */}
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex items-start gap-3 min-w-0">
-          <div className="mt-0.5 shrink-0 w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-            <Zap className="h-3.5 w-3.5 text-emerald-500" />
-          </div>
-          <div className="min-w-0">
-            <h3 className="text-[10px] font-black tracking-[0.25em] uppercase text-emerald-400 leading-none">
-              Model Economy Intelligence
-            </h3>
-            <p className="mt-1.5 text-[10px] text-slate-500 leading-relaxed font-medium">
-              Routing decision logic and efficiency analysis
-            </p>
-          </div>
+      <div className="flex items-start gap-3 min-w-0 mb-4">
+        <div className="mt-0.5 shrink-0 w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+          <Zap className="h-3.5 w-3.5 text-emerald-500" />
         </div>
-        <div className="shrink-0">
-          <Badge variant="outline" className="text-[8px] bg-emerald-500/10 text-emerald-500 border-emerald-500/20 uppercase tracking-widest px-2 py-0.5 whitespace-nowrap">
+        <div className="min-w-0 flex flex-col items-start gap-1.5">
+          <h3 className="text-[10px] font-black tracking-[0.12em] uppercase text-emerald-400 leading-none">
+            Model Economy Intelligence
+          </h3>
+          <Badge variant="outline" className="text-[8px] bg-emerald-500/10 text-emerald-500 border-emerald-500/20 uppercase tracking-widest px-2 py-0.5 whitespace-normal break-normal text-left">
             {routing.compute_efficiency || 'Standard'}
           </Badge>
+          <p className="mt-1 text-[10px] text-slate-500 leading-relaxed font-medium">
+            Routing decision logic and efficiency analysis
+          </p>
         </div>
       </div>
 
@@ -854,15 +850,15 @@ export function GreenModelEconomy({ routing }: { routing: ModelRouting }) {
       </div>
 
       {/* Metrics row */}
-      <div className="grid grid-cols-2 gap-3">
-        <div className="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 space-y-1">
-          <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest block">Compute Savings</span>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 flex flex-col gap-1.5">
+          <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest whitespace-normal break-normal leading-tight">Compute Savings</span>
           <span className="text-[11px] text-emerald-400 font-bold font-mono">
             +{routing.compute_efficiency || '32%'}
           </span>
         </div>
-        <div className="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 space-y-1">
-          <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest block">Carbon Impact</span>
+        <div className="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 flex flex-col gap-1.5">
+          <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest whitespace-normal break-normal leading-tight">Carbon Impact</span>
           <span className="text-[11px] text-slate-400 font-bold font-mono">
             {routing.carbon_impact || '0.04g CO₂e'}
           </span>

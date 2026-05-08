@@ -154,7 +154,7 @@ export function FlipCard({ front, back, className }: { front: React.ReactNode, b
 export function SparkBar({ value, label, color = "bg-sky-500", max = 100 }: { value: number, label: string, color?: string, max?: number }) {
   const percentage = Math.min((value / max) * 100, 100);
   return (
-    <div className="space-y-1.5 flex-1">
+    <div className="space-y-1.5 flex-1 min-w-0">
       <div className="flex justify-between text-[7px] font-black uppercase tracking-widest text-slate-500">
         <span>{label}</span>
         <span className="font-mono">{value}%</span>
@@ -186,7 +186,7 @@ export function ProcessingTimeline() {
     <div className="flex items-center justify-between px-4 py-6 bg-slate-950/20 border border-slate-800/50 rounded-2xl mb-8 relative overflow-hidden group">
       <div className="absolute inset-0 bg-gradient-to-r from-sky-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       {steps.map((step, i) => (
-        <div key={i} className="flex flex-col items-center gap-3 relative z-10 flex-1">
+        <div key={i} className="flex flex-col items-center gap-3 relative z-10 flex-1 min-w-0">
           {i < steps.length - 1 && (
             <div className={cn(
               "absolute top-4 left-1/2 w-full h-[1px]",
@@ -242,7 +242,7 @@ export function AttackProgressionTracker({ score }: { score: number }) {
       <CardContent className="pt-6">
         <div className="flex items-center justify-between">
           {stages.map((stage, i) => (
-            <div key={i} className="flex flex-col items-center gap-3 flex-1 relative">
+            <div key={i} className="flex flex-col items-center gap-3 flex-1 min-w-0 relative">
               {i < stages.length - 1 && (
                 <div className={cn(
                   "absolute top-4 left-1/2 w-full h-[1px] z-0",
@@ -283,7 +283,7 @@ export function ThreatActorProfile({ modality, score }: { modality: string, scor
   const profile = profiles[score > 80 ? 2 : score > 60 ? 1 : score > 40 ? 0 : 3];
 
   const Front = (
-    <Card className="bg-slate-900/40 border-slate-800 self-start soc-card-lift soc-glow-border h-[220px]">
+    <Card className="bg-slate-900/40 border-slate-800 self-start soc-card-lift soc-glow-border h-auto">
       <CardHeader className="pb-3 border-b border-slate-800/30">
         <CardTitle className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
           <Fingerprint className="h-3.5 w-3.5 text-purple-500" />
@@ -315,7 +315,7 @@ export function ThreatActorProfile({ modality, score }: { modality: string, scor
   );
 
   const Back = (
-    <Card className="bg-slate-950 border-purple-500/30 self-start h-[220px] overflow-hidden">
+    <Card className="bg-slate-950 border-purple-500/30 self-start h-auto overflow-hidden">
       <CardHeader className="pb-3 border-b border-purple-500/20 bg-purple-500/5">
         <CardTitle className="text-[10px] font-black text-purple-400 uppercase tracking-[0.2em] flex items-center gap-2">
           <Brain className="h-3.5 w-3.5" />
@@ -884,7 +884,7 @@ export function ExecutiveViewHero({ result }: { result: any }) {
             {result.risk_level || 'Unknown'} Alert
           </span>
         </div>
-        <div className="flex-1 space-y-8">
+        <div className="flex-1 min-w-0 space-y-8">
           <div className="flex items-center gap-4">
             <Badge className="bg-rose-600 text-slate-950 font-black px-5 py-1.5 text-xs uppercase tracking-widest shadow-lg">Threat Intercepted</Badge>
             <div className="h-4 w-[1px] bg-slate-800" />
@@ -987,7 +987,7 @@ export function AttackPathMiniGraph({ score }: { score: number }) {
                 "w-3 h-3 rounded-full shadow-[0_0_10px_rgba(0,0,0,0.5)]",
                 step.status === 'Neutralized' ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" : step.status === 'Blocked' ? "bg-slate-700" : "bg-rose-500 animate-pulse shadow-[0_0_8px_rgba(244,63,94,0.5)]"
               )} />
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest block leading-none">{step.name}</span>
                 <span className={cn("text-[8px] font-bold uppercase tracking-tighter", step.status === 'Neutralized' ? "text-emerald-400" : "text-slate-600")}>{step.status}</span>
               </div>
@@ -1141,18 +1141,13 @@ export function AgentConsensusBoard({ modality }: { modality: string }) {
       <CardContent className="pt-6 space-y-6">
         <div className="space-y-4">
           {consensus.map((item, idx) => (
-            <div key={idx} className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-                <span className="text-[10px] font-bold text-slate-400 w-24">{item.agent}</span>
-              </div>
-              <ArrowRight className="h-3 w-3 text-slate-700" />
-              <div className="flex items-center gap-4">
-                <span className={cn("text-[9px] font-black uppercase tracking-widest w-20 text-right", item.color)}>
-                  {item.decision}
-                </span>
-                <span className="text-[10px] font-mono text-slate-500 w-8 text-right">{item.confidence}%</span>
-              </div>
+            <div key={idx} className="grid grid-cols-[14px_minmax(0,1fr)_auto_42px] items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-slate-700 mx-auto" />
+              <span className="text-[10px] font-bold text-slate-400 truncate pr-2">{item.agent}</span>
+              <span className={cn("text-[9px] font-black uppercase tracking-wide text-right whitespace-nowrap", item.color)}>
+                {item.decision}
+              </span>
+              <span className="text-[10px] font-mono text-slate-500 text-right">{item.confidence}%</span>
             </div>
           ))}
         </div>
@@ -1192,7 +1187,7 @@ export function RiskExplainabilityPanel({ modality }: { modality: string }) {
       <CardContent className="pt-6 space-y-4">
         {factors.map((factor, idx) => (
           <div key={idx} className="flex items-start justify-between group">
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <p className="text-[10px] font-bold text-slate-200">{factor.label}</p>
               <p className="text-[8px] text-slate-500 italic mt-0.5">{factor.reason}</p>
             </div>

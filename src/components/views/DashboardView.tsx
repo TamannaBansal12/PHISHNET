@@ -23,7 +23,7 @@ import { SecurityPostureScore, LiveThreatFeed, SOCOperationsMetrics } from "@/co
 
 export function DashboardView() {
   return (
-    <div className="p-8 space-y-8 max-w-[1600px] mx-auto pb-24">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-[1600px] mx-auto pb-24">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-4">
         <div className="flex flex-col space-y-2">
           <div className="flex items-center gap-3 mb-2">
@@ -31,13 +31,13 @@ export function DashboardView() {
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">System Online</span>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-black tracking-tight text-slate-100 leading-tight">Enterprise Command Center</h1>
+          <h1 className="text-3xl lg:text-5xl font-black tracking-tight text-slate-100 leading-tight">Enterprise Command Center</h1>
           <p className="text-slate-400 font-medium max-w-2xl leading-7 tracking-wide">Real-time orchestration across 4 analysis vectors with integrated <span className="text-sky-400">local LLaMA-3.1</span> reasoning nodes.</p>
         </div>
         
         <div className="flex gap-4">
           <div className="px-5 py-3 bg-slate-900/40 border border-slate-800/50 rounded-2xl flex items-center gap-4 shadow-inner">
-             <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
+             <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 shrink-0">
                <ShieldAlert className="h-5 w-5" />
              </div>
               <div>
@@ -50,11 +50,11 @@ export function DashboardView() {
 
       <SOCOperationsMetrics />
 
-      <div className="grid gap-6 lg:grid-cols-12 items-start">
+      <div className="grid gap-6 grid-cols-1 lg:grid-cols-12 items-start">
         <div className="lg:col-span-8 space-y-6">
           <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5 }}>
-            <Card className="bg-slate-900/40 border-slate-800 backdrop-blur-xl h-auto min-h-[400px]">
-              <CardHeader className="border-b border-slate-800/50 flex flex-row items-center justify-between">
+            <Card className="bg-slate-900/40 border-slate-800 backdrop-blur-xl flex flex-col min-h-[400px]">
+              <CardHeader className="border-b border-slate-800/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <CardTitle className="text-sm font-black text-slate-200 uppercase tracking-widest flex items-center gap-2">
                     <Globe className="h-4 w-4 text-sky-500" />
@@ -66,18 +66,16 @@ export function DashboardView() {
                   <Badge variant="outline" className="text-[9px] uppercase tracking-tighter border-slate-700 text-slate-500">Live Telemetry</Badge>
                 </div>
               </CardHeader>
-              <CardContent className="flex items-center justify-center h-[400px]">
-                <div className="relative w-full h-full flex items-center justify-center">
-                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-sky-500/5 via-transparent to-transparent" />
-                   <div className="flex flex-col items-center gap-4 text-slate-700">
-                     <Globe className="h-32 w-32 opacity-10 animate-[spin_20s_linear_infinite]" />
-                     <span className="text-[10px] font-black uppercase tracking-[0.3em]">Geospatial Intelligence Engine Active</span>
-                   </div>
-                   {/* Simulated Map Markers */}
-                   <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-rose-500 rounded-full animate-ping" />
-                   <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-rose-500 rounded-full animate-ping" />
-                   <div className="absolute bottom-1/3 left-1/2 w-2 h-2 bg-amber-500 rounded-full animate-ping" />
+              <CardContent className="flex-1 flex items-center justify-center p-0 relative">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-sky-500/5 via-transparent to-transparent" />
+                <div className="flex flex-col items-center gap-4 text-slate-700 py-20">
+                  <Globe className="h-32 w-32 opacity-10 animate-[spin_20s_linear_infinite]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em]">Geospatial Intelligence Engine Active</span>
                 </div>
+                {/* Simulated Map Markers */}
+                <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-rose-500 rounded-full animate-ping" />
+                <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-rose-500 rounded-full animate-ping" />
+                <div className="absolute bottom-1/3 left-1/2 w-2 h-2 bg-amber-500 rounded-full animate-ping" />
               </CardContent>
             </Card>
           </motion.div>
@@ -88,8 +86,8 @@ export function DashboardView() {
           </div>
         </div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.6 }} className="lg:col-span-4 space-y-6">
-          <Card className="bg-slate-900/40 border-slate-800 backdrop-blur-xl">
+        <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.6 }} className="lg:col-span-4 space-y-6 flex flex-col h-full">
+          <Card className="bg-slate-900/40 border-slate-800 backdrop-blur-xl flex-1">
             <CardHeader className="border-b border-slate-800/50">
               <CardTitle className="text-sm font-black text-slate-200 uppercase tracking-widest flex items-center gap-2">
                 <History className="h-4 w-4 text-purple-500" />
@@ -108,19 +106,19 @@ export function DashboardView() {
                   <div key={i} className="flex items-center justify-between group cursor-pointer">
                     <div className="flex items-center gap-4">
                       <div className={cn(
-                        "w-10 h-10 rounded-xl flex items-center justify-center border transition-all",
+                        "w-10 h-10 rounded-xl flex items-center justify-center border transition-all shrink-0",
                         item.status === 'Critical' ? "bg-rose-500/10 border-rose-500/20 text-rose-500" : 
                         item.status === 'Review' ? "bg-amber-500/10 border-amber-500/20 text-amber-500" : 
                         "bg-emerald-500/10 border-emerald-500/20 text-emerald-500"
                       )}>
                         {item.modality === 'Email' ? <Mail className="h-5 w-5" /> : item.modality === 'Audio' ? <Mic className="h-5 w-5" /> : item.modality === 'Video' ? <Video className="h-5 w-5" /> : <Search className="h-5 w-5" />}
                       </div>
-                      <div>
-                        <p className="text-xs font-black text-slate-200 uppercase tracking-tighter">{item.modality} Analysis</p>
-                        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">{item.vector}</p>
+                      <div className="min-w-0">
+                        <p className="text-xs font-black text-slate-200 uppercase tracking-tighter truncate">{item.modality} Analysis</p>
+                        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest truncate">{item.vector}</p>
                       </div>
                     </div>
-                    <div className="text-right">
+                    <div className="text-right shrink-0">
                       <div className="flex items-center gap-2 justify-end mb-1">
                         <span className={cn("text-[10px] font-black uppercase tracking-widest", 
                           item.status === 'Critical' ? 'text-rose-500' : item.status === 'Review' ? 'text-amber-500' : 'text-emerald-500'
