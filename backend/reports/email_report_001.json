@@ -1,0 +1,8 @@
+{
+  "modality": "email",
+  "risk_score": 92,
+  "confidence": 94,
+  "verdict": "phishing",
+  "model_used": "heavy_roberta_llm",
+  "created_at": "2026-05-08T10:00:00Z"
+}

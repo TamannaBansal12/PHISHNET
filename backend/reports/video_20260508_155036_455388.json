@@ -1,0 +1,10 @@
+{
+  "id": "ffb7332f-d1b0-4191-b462-59f53a17709c",
+  "modality": "video",
+  "risk_score": 88.0,
+  "confidence": 86.0,
+  "verdict": "deepfake_suspected",
+  "model_used": "heavy_vlm_timesformer",
+  "created_at": "2026-05-08T15:50:36.455382",
+  "source": "test_seed"
+}

@@ -1,3 +1,4 @@
+from backend.utils.report_logger import save_report
 import os
 import sys
 import shutil
@@ -178,6 +179,34 @@ async def analyze_ocr_endpoint(file: UploadFile = File(...)):
             routing_reason_val = " ".join(routing_reason_val)
         else:
             routing_reason_val = str(routing_reason_val)
+
+            # PHISHNET analytics report logging
+
+            try:
+
+                save_report(
+
+                    modality="ocr",
+
+                    risk_score=locals().get("risk_score", locals().get("riskScore", locals().get("score", 0))),
+
+                    confidence=locals().get("confidence", locals().get("confidence_score", 0)),
+
+                    verdict=locals().get("verdict", locals().get("label", locals().get("prediction", "unknown"))),
+
+                    model_used=locals().get("model_used", locals().get("modelUsed", locals().get("route", "unknown"))),
+
+                    extra_data={
+
+                        "source": "ocr_pipeline"
+
+                    }
+
+                )
+
+            except Exception as report_error:
+
+                print("Report logging failed:", report_error)
 
         return EmailAnalyzeResponse(
             status="success",

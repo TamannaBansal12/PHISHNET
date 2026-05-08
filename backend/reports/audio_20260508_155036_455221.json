@@ -1,0 +1,10 @@
+{
+  "id": "559520b4-7399-4d47-b102-1ea3cb6a2b6c",
+  "modality": "audio",
+  "risk_score": 73.0,
+  "confidence": 81.0,
+  "verdict": "synthetic_possible",
+  "model_used": "balanced_cnn_bilstm",
+  "created_at": "2026-05-08T15:50:36.455216",
+  "source": "test_seed"
+}

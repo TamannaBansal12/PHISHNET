@@ -1,0 +1,10 @@
+{
+  "id": "e4c51639-c34c-421d-bba7-7034f81abfae",
+  "modality": "watermark",
+  "risk_score": 54.0,
+  "confidence": 89.0,
+  "verdict": "tamper_check_warning",
+  "model_used": "lightweight_hash_check",
+  "created_at": "2026-05-08T15:50:36.455836",
+  "source": "test_seed"
+}

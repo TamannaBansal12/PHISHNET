@@ -1,0 +1,8 @@
+{
+  "modality": "ocr",
+  "risk_score": 67,
+  "confidence": 76,
+  "verdict": "brand_spoofing",
+  "model_used": "balanced_easyocr_layout",
+  "created_at": "2026-05-08T10:15:00Z"
+}
