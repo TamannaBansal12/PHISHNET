@@ -1,19 +1,74 @@
-venv/
-__pycache__/
-*.pyc
-.env
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+.next/
+node_modules/
+uploads/
 data/raw/
 data/processed/
-data/samples/
-
 models/
-reports/
-
 *.mp4
 *.mov
-*.wav
-*.mp3
-*.zip
+*.avi
+*.mkv
+*.npy
+*.pkl
+*.pt
+*.h5
 
-.DS_Store
+# Large data / generated files
+backend/data/raw/
+backend/data/processed/
+backend/data/samples/
+backend/models/
+*.zip
+*.csv
+*.mov
+*.mp4
+*.pkl
+*.npy
+*.pt
+*.h5
+__pycache__/
+*.pyc
+.next/
+node_modules/
