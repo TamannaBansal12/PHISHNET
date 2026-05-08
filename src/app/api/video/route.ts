@@ -24,7 +24,6 @@ export async function POST(request: NextRequest) {
         // Forward the multipart boundary so the backend can parse it correctly
         'content-type': contentType,
       },
-      // @ts-expect-error — Next.js Request body is a ReadableStream, fetch accepts it
       body: request.body,
       // Required to actually stream the body rather than buffering it
       duplex: 'half',
